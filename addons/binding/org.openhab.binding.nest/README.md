@@ -108,7 +108,7 @@ The account Thing Type does not have any channels.
 | sunlight_correction_active  | Switch    | If sunlight correction is active         |     R      |
 | sunlight_correction_enabled | Switch    | If sunlight correction is enabled        |     R      |
 | using_emergency_heat        | Switch    | If the system is currently using emergency heat |     R      |
-
+| hvac_state                  | String    | The currenet state of HVAC (HEATING, COOLING, OFF) |     R      |
 Note that the Nest API rounds Thermostat values so they will differ from what shows up in the Nest App. The Nest API applies the following rounding:
 
 * degrees Celsius to 0.5 degrees
@@ -172,6 +172,7 @@ Switch Thermostat_SunlightCE   "Sunlight Correction Enabled"    { channel="nest:
 Number Thermostat_Temperature  "Temperature [%.1f °C]"          { channel="nest:thermostat:demo_account:living_thermostat:temperature" }
 Number Thermostat_TimeToTarget "Time To Target [%s]"            { channel="nest:thermostat:demo_account:living_thermostat:time_to_target_mins" }
 Switch Thermostat_UsingEmHeat  "Using Emergency Heat"           { channel="nest:thermostat:demo_account:living_thermostat:using_emergency_heat" }
+String Thermostat_HvacState    "HVAC State [%s]"                { channel="nest:thermostat:demo_account:living_thermostat:hvac_state" }
 
 /* Structure */
 String   Home_Away "Away [%s]"                                                      { channel="nest:structure:demo_account:home:away" }

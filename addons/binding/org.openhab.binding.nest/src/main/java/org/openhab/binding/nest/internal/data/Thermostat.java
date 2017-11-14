@@ -49,7 +49,7 @@ public class Thermostat extends BaseNestDevice {
     @SerializedName("previous_hvac_mode")
     private Mode previousMode;
     @SerializedName("hvac_state")
-    private State state;
+    private HvacState hvacState;
     @SerializedName("is_locked")
     private boolean isLocked;
     @SerializedName("locked_temp_max_c")
@@ -163,8 +163,8 @@ public class Thermostat extends BaseNestDevice {
         return previousMode;
     }
 
-    public State getState() {
-        return state;
+    public HvacState getHvacState() {
+        return hvacState;
     }
 
     public boolean isSunlightCorrectionEnabled() {
@@ -218,7 +218,7 @@ public class Thermostat extends BaseNestDevice {
         OFF
     }
 
-    public enum State {
+    public enum HvacState {
         @SerializedName("heating")
         HEATING,
         @SerializedName("cooling")
@@ -237,8 +237,8 @@ public class Thermostat extends BaseNestDevice {
                 .append(", ambientTemperature=").append(ambientTemperature).append(", humidity=").append(humidity)
                 .append(", targetTemperature=").append(targetTemperature).append(", targetTemperatureHigh=")
                 .append(targetTemperatureHigh).append(", targetTemperatureLow=").append(targetTemperatureLow)
-                .append(", mode=").append(mode).append(", previousMode=").append(previousMode).append(", state=")
-                .append(state).append(", isLocked=").append(isLocked).append(", lockedTemperatureHigh=")
+                .append(", mode=").append(mode).append(", previousMode=").append(previousMode).append(", hvacState=")
+                .append(hvacState).append(", isLocked=").append(isLocked).append(", lockedTemperatureHigh=")
                 .append(lockedTemperatureHigh).append(", lockedTemperatureLow=").append(lockedTemperatureLow)
                 .append(", sunlightCorrectionEnabled=").append(sunlightCorrectionEnabled)
                 .append(", sunlightCorrectionActive=").append(sunlightCorrectionActive).append(", fanTimerDuration=")

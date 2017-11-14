@@ -323,4 +323,17 @@
 		<description>If the system is currently using emergency heat</description>
 		<state readOnly="true" />
 	</channel-type>
+
+	<channel-type id="HvacState">
+		<item-type>String</item-type>
+		<label>Hvac State</label>
+		<description>Current state of the Nest thermostat</description>
+		<state readOnly="true">
+			<options>
+				<option value="HEATING">heating</option>
+				<option value="COOLING">cooling</option>
+				<option value="OFF">off</option>
+			</options>
+		</state>
+	</channel-type>
 </thing:thing-descriptions>

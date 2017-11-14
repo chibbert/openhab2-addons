@@ -32,7 +32,8 @@
 			<channel id="locked_max_set_point" typeId="LockedMaxSetPoint" />
 			<channel id="locked_min_set_point" typeId="LockedMinSetPoint" />
 			<channel id="time_to_target_mins" typeId="TimeToTarget" />
-		</channels>
+			<channel id="hvac_state" typeId="HvacState" />
+			</channels>
 
 		<properties>
 			<property name="vendor">Nest</property>

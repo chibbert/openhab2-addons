@@ -77,6 +77,7 @@ public class NestBindingConstants {
     public static final String CHANNEL_SUNLIGHT_CORRECTION_ACTIVE = "sunlight_correction_active";
     public static final String CHANNEL_TIME_TO_TARGET_MINS = "time_to_target_mins";
     public static final String CHANNEL_USING_EMERGENCY_HEAT = "using_emergency_heat";
+    public static final String CHANNEL_HVAC_STATE = "hvac_state";
 
     // read/write channels (camera)
     public static final String CHANNEL_STREAMING = "streaming";

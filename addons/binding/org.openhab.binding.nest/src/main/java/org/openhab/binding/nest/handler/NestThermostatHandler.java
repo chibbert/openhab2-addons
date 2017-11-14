@@ -42,6 +42,7 @@ public class NestThermostatHandler extends NestBaseHandler<Thermostat> {
 
     @Override
     protected State getChannelState(ChannelUID channelUID, Thermostat thermostat) {
+        logger.error("getChannelState '{}'", channelUID);
         switch (channelUID.getId()) {
             case CHANNEL_CAN_COOL:
                 return getAsOnOffType(thermostat.isCanCool());
@@ -80,11 +81,16 @@ public class NestThermostatHandler extends NestBaseHandler<Thermostat> {
             case CHANNEL_SUNLIGHT_CORRECTION_ENABLED:
                 return getAsOnOffType(thermostat.isSunlightCorrectionEnabled());
             case CHANNEL_TEMPERATURE:
+                logger.error("CHANNEL_TEMPERATURE. '{}'", thermostat.getAmbientTemperature());
                 return new DecimalType(thermostat.getAmbientTemperature());
             case CHANNEL_TIME_TO_TARGET_MINS:
                 return new DecimalType(thermostat.getTimeToTarget());
             case CHANNEL_USING_EMERGENCY_HEAT:
                 return getAsOnOffType(thermostat.isUsingEmergencyHeat());
+            case CHANNEL_HVAC_STATE:
+                logger.error("CHANNEL_HVAC_STATE. '{}'", thermostat.getHvacState().name());
+                logger.error("CHANNEL_HVAC_STATE.. '{}'", thermostat.getHvacState());
+                return new StringType(thermostat.getHvacState().name());
             default:
                 logger.error("Unsupported channelId '{}'", channelUID.getId());
                 return UnDefType.UNDEF;
@@ -146,6 +152,8 @@ public class NestThermostatHandler extends NestBaseHandler<Thermostat> {
         }
 
         logger.debug("Updating thermostat {}", thermostat.getDeviceId());
+        logger.error("CHANNEL_HVAC_STATE. '{}'", thermostat.getHvacState().name());
+        logger.error("CHANNEL_HVAC_STATE.. '{}'", thermostat.getHvacState());
 
         setLastUpdate(thermostat);
         updateChannels(thermostat);
