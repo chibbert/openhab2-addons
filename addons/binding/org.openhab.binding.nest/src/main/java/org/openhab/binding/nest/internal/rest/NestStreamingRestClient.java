@@ -90,6 +90,10 @@ public class NestStreamingRestClient {
         }
     }
 
+    public boolean isConnected() {
+        return connected;
+    }
+
     public void start() {
         synchronized (this) {
             logger.debug("Opening EventSource and starting checkConnection job");

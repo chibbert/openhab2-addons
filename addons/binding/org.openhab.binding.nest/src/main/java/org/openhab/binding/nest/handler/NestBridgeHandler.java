@@ -135,6 +135,7 @@ public class NestBridgeHandler extends BaseBridgeHandler implements NestStreamin
                         getOrResolveRedirectUrl(), scheduler);
                 streamingRestClient.addStreamingDataListener(this);
                 streamingRestClient.start();
+                scheduler.schedule(this::connectionCheck, 10, SECONDS);
             } catch (InvalidAccessTokenException e) {
                 logger.debug("Invalid access token", e);
                 updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
@@ -145,6 +146,23 @@ public class NestBridgeHandler extends BaseBridgeHandler implements NestStreamin
                 logger.debug("Reattempting to resolve redirect URL in 5 seconds");
                 scheduler.schedule(this::startStreamingUpdates, 5, SECONDS);
             }
+        }
+    }
+
+    private void connectionCheck() {
+        logger.debug("connectionCheck");
+
+        if (!streamingRestClient.isConnected())
+        {
+            // We're disconnected schedule restartStreamingUpdates
+            logger.debug("Restart required - streamingRestClient is disconnected");
+            scheduler.schedule(this::restartStreamingUpdates, 5, SECONDS);
+        }
+        else
+        {
+            // All is well, check connection again in a short while
+            logger.debug("All's well");
+            scheduler.schedule(this::connectionCheck, 10, SECONDS);
         }
     }
 
